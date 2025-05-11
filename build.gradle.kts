@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.postgresql)
     implementation(libs.h2)
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:4.10.1")
     implementation(libs.exposed.core)
     implementation(libs.exposed.jdbc)
     implementation(libs.exposed.dao)
