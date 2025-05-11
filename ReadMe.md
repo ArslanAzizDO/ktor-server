@@ -1,64 +1,40 @@
-# Ktor Server example deployed on Render Cloud Hosting
+# notes
 
-https://render.com/
+This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
-### Free Tier usage
+Here are some useful links to get you started:
 
-Provides just enough RAM and CPU 512MB/0.1 for JVM app
+- [Ktor Documentation](https://ktor.io/docs/home.html)
+- [Ktor GitHub page](https://github.com/ktorio/ktor)
+- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
 
-* Link GitHub account to Render 
-* Allow access to the GitHub repo
-* Create a new Render Web Service for Docker
-* Set a service name (will be accessible at https://[servicename].onrender.com/)
-* Build & Deploy settings
-* Set repo branch
-* Set health check to /health
-* Leave Dockerfile and other settings to defaults
+## Features
 
-### Multistage Dockerfile
+Here's a list of features included in this project:
 
-[Dockerfile](https://github.com/griffio/ktor-server-01/blob/master/Dockerfile)
+| Name                                       | Description                                    |
+| --------------------------------------------|------------------------------------------------ |
+| [Routing](https://start.ktor.io/p/routing) | Provides a structured routing DSL              |
+| [Webjars](https://start.ktor.io/p/webjars) | Bundles static assets into your built JAR file |
 
-* Stage 1 - Run the gradle build to create a fatJar (or use installDist) with all dependencies
-* Stage 2 - Containerize the executable jar
+## Building & Running
 
-This is because Render service checkouts the repo and executes a Docker build - yet to support deploy from Container registry
-see https://feedback.render.com/features/p/deploy-docker-images-from-public-private-registries
+To build or run the project, use one of the following tasks:
 
-Deploy Application log on start-up
+| Task                          | Description                                                          |
+| -------------------------------|---------------------------------------------------------------------- |
+| `./gradlew test`              | Run the tests                                                        |
+| `./gradlew build`             | Build everything                                                     |
+| `buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
+| `buildImage`                  | Build the docker image to use with the fat JAR                       |
+| `publishImageToLocalRegistry` | Publish the docker image locally                                     |
+| `run`                         | Run the server                                                       |
+| `runDocker`                   | Run using the local docker image                                     |
 
-The default JVM ergonomics uses Heap at 25% of RAM and 1 available CPU uses SerialGC
+If the server starts successfully, you'll see the following output:
 
 ```
--XX:InitialHeapSize=8388608 -XX:MaxHeapSize=134217728 -XX:MinHeapSize=6815736 -XX:+PrintCommandLineFlags -XX:ReservedCodeCacheSize=251658240 -XX:+SegmentedCodeCache -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseSerialGC
- [info][gc,init] Version: 17.0.2+8-86 (release)
- [info][gc,init] CPUs: 8 total, 1 available
- [info][gc,init] Memory: 512M
- [info][gc,init] Large Page Support: Disabled
- [info][gc,init] NUMA Support: Disabled
- [info][gc,init] Compressed Oops: Enabled (32-bit)
- [info][gc,init] Heap Min Capacity: 8M
- [info][gc,init] Heap Initial Capacity: 8M
- [info][gc,init] Heap Max Capacity: 128M
- [info][gc,init] Pre-touch: Disabled
- [main] INFO  ktor.application - Application started in 8.185 seconds.
- [DefaultDispatcher-worker-2] INFO  ktor.application - Responding at http://0.0.0.0:8080
- [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
- [main] INFO  ktor.application - Application started in 7.4 seconds.
- [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
- [eventLoopGroupProxy-4-1] TRACE io.ktor.routing.Routing - Trace for [health]
+2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
+2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
 ```
 
-### Alternatives without Credit Card
-
-* https://www.koyeb.com/docs/faqs/pricing#is-there-a-free-tier
-  * One free web Service in the Frankfurt or Washington, D.C. regions with 512MB of RAM, 0.1 vCPU, and 2GB of SSD.
-* ~~https://mogenius.com~~
-  * Free signups currently suspended
-  * Supports DockerHub and other container registries
-* ~~https://fly.io~~ https://fly.io/blog/free-postgres/#a-note-about-credit-cards
-  * Free limited to 256MB
-  * Supports container registries
-* ~~https://railway.app/~~ https://blog.railway.app/p/updates-on-plans
-
-    
