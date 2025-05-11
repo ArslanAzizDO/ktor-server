@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ktor-backend
+    name: ktor-rest
     runtime: docker
     plan: free
     dockerfilePath: ./Dockerfile

@@ -1,5 +1,6 @@
 package com.tidoo
 
+import com.tidoo.model.DatabaseTaskRepository
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
@@ -7,5 +8,9 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    val repository = DatabaseTaskRepository()
+
+    configureSerialization(repository)
+    configureDatabases()
     configureRouting()
 }

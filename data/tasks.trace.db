@@ -1,0 +1,9 @@
+2025-02-27 16:38:13.993343+05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TASK" not found (this database is empty); SQL statement:
+SELECT TASK.ID, TASK."name", TASK.DESCRIPTION, TASK.PRIORITY FROM TASK [42104-232]
+2025-02-27 16:38:14.003857+05:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TASK" not found (this database is empty); SQL statement:
+SELECT TASK.ID, TASK."name", TASK.DESCRIPTION, TASK.PRIORITY FROM TASK [42104-232]
+2025-02-27 16:38:14.005864+05:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TASK" not found (this database is empty); SQL statement:
+SELECT TASK.ID, TASK."name", TASK.DESCRIPTION, TASK.PRIORITY FROM TASK [42104-232]
