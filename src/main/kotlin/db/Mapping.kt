@@ -28,7 +28,7 @@ suspend fun <T> suspendTransaction(block: Transaction.() -> T): T =
     newSuspendedTransaction(Dispatchers.IO, statement = block)
 
 fun daoToModel(dao: TaskDAO) = Task(
-    dao.name,
-    dao.description,
-    Priority.valueOf(dao.priority)
+    name = dao.name,
+    description = dao.description,
+    priority = Priority.valueOf(dao.priority)
 )
